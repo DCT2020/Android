@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.indigo.gyrodropmanager.MainActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:id="@+id/state_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="None"
+        android:textSize="36sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="Auto Test"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="8dp" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/start_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/state_text">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnCount="3">
+
+                <Button
+                    android:id="@+id/black_box_button"
+                    android:layout_columnWeight="1"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:text="1st Black Box" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="Power"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/black_box_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="Off"
+                    android:textAlignment="textEnd" />
+
+                <Space
+                    android:layout_height="30dp"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="1" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:text="Start Sensor(A)"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="Sensing Count"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/start_sensor_a_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="0"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:text="Start Sensor(B)"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="Sensing Count"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/start_sensor_b_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="0"
+                    android:textAlignment="textEnd" />
+
+                <Space
+                    android:layout_height="30dp"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="4" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:text="Height Sensor(A)"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="Sensing Count"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/height_sensor_a_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="0"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:text="Height Sensor(B)"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="Sensing Count"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/height_sensor_b_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="0"
+                    android:textAlignment="textEnd" />
+
+                <Space
+                    android:layout_height="30dp"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="7" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:text="Rotation Sensor(A)"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="Sensing Count"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/rotation_sensor_a_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="0"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:text="Rotation Sensor(B)"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="Sensing Count"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/rotation_sensor_b_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="0"
+                    android:textAlignment="textEnd" />
+
+                <Space
+                    android:layout_height="30dp"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="10" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:text="Reset Sensor(A)"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="State"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/reset_sensor_a_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="Need Test"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:text="Reset Sensor(B)"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="right"
+                    android:text="State"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/reset_sensor_b_edit"
+                    android:layout_columnWeight="1"
+                    android:enabled="false"
+                    android:text="Need Test"
+                    android:textAlignment="textEnd" />
+
+                <Space
+                    android:layout_height="30dp"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="7" />
+
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/blackbox_a_rssi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="[A] "
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/start_button"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/start_button"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/rssi_a_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Signal"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@+id/blackbox_a_rssi"
+        app:layout_constraintTop_toTopOf="@+id/start_button"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/start_button"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/blackbox_b_rssi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="[B] "
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@+id/rssi_a_text"
+        app:layout_constraintTop_toTopOf="@+id/start_button"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/start_button"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/rssi_b_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Signal"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@+id/blackbox_b_rssi"
+        app:layout_constraintTop_toTopOf="@+id/start_button"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/start_button"
+        android:layout_marginBottom="8dp" />
+
+</android.support.constraint.ConstraintLayout>

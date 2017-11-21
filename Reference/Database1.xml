@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database client="Lotte World" product="Gyrodrop">
+  <uses-nfc>
+    <item id="1">
+      <tag id="f0 07 0d 02"/>
+      <tag id="00 00 00 00"/>
+    </item>
+    <item id="2">
+      <tag id="00 00 00 00"/>
+    </item>
+    <item id="battery">
+      <tag id="35 dd 2c 2b"/>
+    </item>
+  </uses-nfc>
+  
+  <interpolate interval="1000">
+    <item id="1">
+      <tag id="500"/>
+    </item>
+    <item id="2">
+      <tag id="1000"/>
+    </item>
+    <item id="3">
+      <tag id="1500"/>
+    </item>
+    <item id="4">
+      <tag id="2000"/>
+    </item>
+    <item id="5">
+      <tag id="2500"/>
+    </item>
+    <item id="6">
+      <tag id="3000"/>
+    </item>
+  </interpolate>
+
+  <debug>
+    <item id="Interpolate Mode">
+      <tag id="None"/>
+    </item>
+  </debug>
+</database>
