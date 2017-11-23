@@ -1,50 +1,52 @@
-package BehaviorClasses;
+package FunctionClasses;
 
 import android.app.Activity;
 import android.content.Context;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-import android.widget.Toast;
 
 /**
  * Created by Administrator on 2017-11-22.
  */
 
-public class IndigoNfc {
-    private static IndigoNfc instance = null;
+public class NfcHelper {
+    private static NfcHelper instance = null;
 
+    private NfcAdapter.ReaderCallback readerCallback;
     private NfcAdapter nfcAdapter;
     private Context context;
 
-    public static IndigoNfc getInstance(){
+    public static NfcHelper getInstance(){
         if(instance == null) {
-            instance = new IndigoNfc();
+            instance = new NfcHelper();
         }
         return instance;
     }
 
     public void enable(Activity activity){
-        nfcAdapter.enableReaderMode(activity,readerCallback, NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK,null);
+        nfcAdapter = NfcAdapter.getDefaultAdapter(activity);
+        if(nfcAdapter != null){
+            nfcAdapter.enableReaderMode(activity,readerCallback, NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK,null);
+        }
     }
 
     public void disable(Activity activity){
-        nfcAdapter.disableReaderMode(activity);
+        nfcAdapter = NfcAdapter.getDefaultAdapter(activity);
+        if(nfcAdapter != null){
+            nfcAdapter.disableReaderMode(activity);
+        }
     }
 
     public boolean init(Context _context){
         context = _context;
         if(context == null) return false;
-        nfcAdapter = NfcAdapter.getDefaultAdapter(context);
-        if(nfcAdapter == null) return false;
         return true;
     }
 
-    private NfcAdapter.ReaderCallback readerCallback = new NfcAdapter.ReaderCallback() {
-        @Override
-        public void onTagDiscovered(Tag tag) {
-            Toast.makeText(context,"Nfc discovered",Toast.LENGTH_LONG).show();
-        }
-    };
+    public void setNfcActionCallBack(NfcAdapter.ReaderCallback readercallback)
+    {
+        readerCallback = readercallback;
+    }
 
     private String byteArrayToHex(byte[] a){
         StringBuilder sb = new StringBuilder();
