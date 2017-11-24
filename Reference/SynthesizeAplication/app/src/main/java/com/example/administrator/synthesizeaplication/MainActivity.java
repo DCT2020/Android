@@ -37,33 +37,6 @@ public class MainActivity extends AppCompatActivity {
         {
             NfcHelper.getInstance().enable(this);
         }
-
-            Resources res = getResources();
-            items = res.getStringArray(R.array.items);
-
-            //어뎁터를 생성 및 초기화합니다.
-            ItemAdapter itemAdapter = new ItemAdapter(this, R.layout.function_listview_detail);
-            {
-                itemAdapter.addElementInfo(new ItemAdapter.IElementInitializer() {
-                    @Override
-                    public void InitAction(View v, int _childViewId, Object[] _dataContainerForInitialize, int index) {
-                        TextView textView = (TextView) (v.findViewById(_childViewId));
-                        textView.setText(_dataContainerForInitialize[index].toString());
-                    }
-                }, R.id.functionName, res.getStringArray(R.array.items));
-            }
-
-            FunctionListView = (ListView) (findViewById(R.id.functionListView));
-            FunctionListView.setAdapter(itemAdapter);
-            FunctionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent doBehaviorActivity = new Intent(getApplicationContext(), .class);
-                    doBehaviorActivity.putExtra("com.example.administrator.ITEM_INDEX", i);
-                    startActivity(doBehaviorActivity);
-                }
-            });
-
     }
 
     @Override
