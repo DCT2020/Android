@@ -16,7 +16,7 @@ import java.util.List;
  * Created by S.B Hwang on 2017-08-25.
  */
 
-class IndigoBluetooth {
+class       IndigoBluetooth {
     interface BluetoothEventListener {
         void onBeaconFound(Beacon beacon);
     }

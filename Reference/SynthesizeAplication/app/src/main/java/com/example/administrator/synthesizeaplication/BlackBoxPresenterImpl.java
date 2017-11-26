@@ -1,6 +1,8 @@
 package com.example.administrator.synthesizeaplication;
 
 import android.app.Activity;
+import android.util.Log;
+
 import Indigo.BlackBoxModel;
 
 /**
@@ -27,4 +29,24 @@ public class BlackBoxPresenterImpl implements  BasePresenter {
     @Override
     public void onConfirm() {
     }
+
+    public void stop(){
+        if(model != null){
+            model.Stop();
+        }
+        else {
+            Log.i("BlackBoxPresenterImpl","model is null");
+        }
+    }
+
+    public void scan(){
+        if(model  != null){
+            model.Scan();
+        }
+        else{
+            Log.i("BlackBoxPresenterImpl","model is null");
+        }
+    }
+
+
 }

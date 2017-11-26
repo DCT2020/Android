@@ -232,31 +232,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         blackBoxPower.setText("On");
         powerSensing = true;
 
-        if(beacon.address.equals(RESET_SENSOR_A_ADDRESS)) {
+        if(beacon.address.equals(RESET_SENSOR_A_ADDRESS)) {                     //만약 감지된 비콘의 address가 A 센서 어드레스와 동일하다면 rssiAText를 beacon.rssi로 설정한다
             rssiAText.setText(beacon.rssi);
         }
-        if(beacon.address.equals(RESET_SENSOR_B_ADDRESS)) {
+        if(beacon.address.equals(RESET_SENSOR_B_ADDRESS)) {                     //만약 감지된 비콘의 address가 B 센서 어드레스와 동일하다면 rssiBText를 beacon.rssi로 설정한다
             rssiBText.setText(beacon.rssi);
         }
 
-        if(testStartedA) {
+        if(testStartedA) {                                                      //만약 A의 테스트가 시작되었다면
             stateText.setText("Processing...");
-            if(Integer.parseInt(beacon.rssi) < BEACON_BAD_RSSI) {
-                badFlagA = true;
+            if(Integer.parseInt(beacon.rssi) < BEACON_BAD_RSSI) {               //beacon의 rssi가 BEACON_BAD_RSSI보다 작다면
+                badFlagA = true;                                                //A는 올바르지 못한 데이터 이다.
             }
 
-            if(beacon.address.equals(START_SENSOR_A_ADDRESS)) {
-                indigoTime.timeLock(START_SENSOR_A_ADDRESS, new Runnable() {
+            if(beacon.address.equals(START_SENSOR_A_ADDRESS)) {                                                 //비콘의 address가 START_SENSOR_A_ADDRESS와 같다면
+                indigoTime.timeLock(START_SENSOR_A_ADDRESS, new Runnable() {                                    //timeLock을 걸어준다        // (String processID, final Runnable runnable, final int millisecond, final int whenRun)
                     @Override
-                    public void run() {
+                    public void run() {                                                                         //이 run  함수가 호출될때~
                         ++startSensorACount;
-                        packet.startSensorATime.add(IndigoTime.getCurrentTime("HH:mm:ss.SSS"));
-                        packet.startSensorARssi.add(beacon.rssi);
-                        startSensorA.setText(String.valueOf(startSensorACount));
+                        packet.startSensorATime.add(IndigoTime.getCurrentTime("HH:mm:ss.SSS"));        //이 순간의 시간을 패킷의 startSensorATime<list>에 추가해준다.
+                        packet.startSensorARssi.add(beacon.rssi);                                              //이 순간 beacon의  rssi를 startSensorARssi<list>에 추가해준다.
+                        startSensorA.setText(String.valueOf(startSensorACount));                               //UI로 현재 시작된 샌서들의 수를 출력해준다.
                     }
-                }, 6000, IndigoTime.TIME_LOCK_RUN_FIRST);
+                }, 6000, IndigoTime.TIME_LOCK_RUN_FIRST);                                          //Runnable을 콜백함수로,  6000ms, 실행될 때
             }
-            if(beacon.address.equals(HEIGHT_SENSOR_A_ADDRESS)) {
+            if(beacon.address.equals(HEIGHT_SENSOR_A_ADDRESS)) {                                               //위와 흐름이 비슷
                 indigoTime.timeLock(HEIGHT_SENSOR_A_ADDRESS, new Runnable() {
                     @Override
                     public void run() {
@@ -278,30 +278,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }, 1800, IndigoTime.TIME_LOCK_RUN_FIRST);
             }
-            if(beacon.address.equals(RESET_SENSOR_A_ADDRESS)) {
-                resetSensorASensing = true;
+            if(beacon.address.equals(RESET_SENSOR_A_ADDRESS)) {                                 //A센서에 대한 리셋요청이 들어옴
+                resetSensorASensing = true;                                                     //A센서에대한 rest condition을 true
                 if(resetedA) {
-                    if(!badFlagA) {
+                    if(!badFlagA) {                                                             //badFlag가 아니라면
                         resetSensorA.setText("Good");
                     }
                     else {
                         resetSensorA.setText("Bad");
                     }
-                    packet.startSensorACount = String.valueOf(startSensorACount);
+                    packet.startSensorACount = String.valueOf(startSensorACount);               //packet에 가지고 있던 데이터를 copy
                     packet.heightSensorACount = String.valueOf(heightSensorACount);
                     packet.rotationSensorACount = String.valueOf(rotationSensorACount);
                     testCompleteA = true;
                     testStartedA = false;
-                    dataVerification();
+                    dataVerification();                                                         //데이터 검사
                 }
-                if(!processingA) {
-                    resetSensorAHandler.post(resetSensorARunnable);
-                    processingA = true;
+                if(!processingA) {                                                              //A에 대한 처리 실패
+                    resetSensorAHandler.post(resetSensorARunnable);                             //resetSensorAHandler에 resetSensorARunnable을 보냄
+                    processingA = true;                                                         //A에 대한 처리 확인
                 }
             }
         }
 
-        if(testStartedB) {
+        if(testStartedB) {                                                                      //위으 B 동작과 동일
             stateText.setText("Processing...");
 
             if(Integer.parseInt(beacon.rssi) < BEACON_BAD_RSSI) {
