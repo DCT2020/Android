@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IndigoUnityLib.iml" filepath="$PROJECT_DIR$/IndigoUnityLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libindigoble/libindigoble.iml" filepath="$PROJECT_DIR$/libindigoble/libindigoble.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libindigogearvr/libindigogearvr.iml" filepath="$PROJECT_DIR$/libindigogearvr/libindigogearvr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libindigonfc/libindigonfc.iml" filepath="$PROJECT_DIR$/libindigonfc/libindigonfc.iml" />
+    </modules>
+  </component>
+</project>

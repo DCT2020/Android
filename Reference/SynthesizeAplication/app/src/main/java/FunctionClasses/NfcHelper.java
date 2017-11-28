@@ -48,7 +48,7 @@ public class NfcHelper {
         readerCallback = readercallback;
     }
 
-    private String byteArrayToHex(byte[] a){
+    public String byteArrayToHex(byte[] a){
         StringBuilder sb = new StringBuilder();
         for(final byte b: a)
             sb.append(String.format("%02x ", b & 0xff));

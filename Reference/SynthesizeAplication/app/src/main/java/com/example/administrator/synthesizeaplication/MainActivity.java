@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +32,7 @@ import Indigo.BlackBoxModel;
 
 import static com.example.administrator.synthesizeaplication.UICreateHelper.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     ListView FunctionListView;
     NfcAdapter nfcAdapter;
@@ -48,19 +50,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
         {
             NfcHelper.getInstance().enable(this);
+            NfcHelper.getInstance().setNfcActionCallBack(new NfcAdapter.ReaderCallback() {
+                @Override
+                public void onTagDiscovered(Tag tag) {
+                    StringBuffer string = new StringBuffer();
+                    string.append(NfcHelper.getInstance().byteArrayToHex(tag.getId()));
+                    Log.i("Tag",string.toString());
+                }
+            });
         }
 
-        blackBoxPresenter = new BlackBoxPresenterImpl(this);
-
+       // blackBoxPresenter = new BlackBoxPresenterImpl(this);
 
         ///////////////////////////////////////////////////////////////
-        AppOpsManager appOpsManager = (AppOpsManager)getSystemService(Context.APP_OPS_SERVICE);
+        /*AppOpsManager appOpsManager = (AppOpsManager)getSystemService(Context.APP_OPS_SERVICE);
         int mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, android.os.Process.myUid(), getPackageName());
         if(mode != AppOpsManager.MODE_ALLOWED) {
             startActivityForResult(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS), 2);
         }
 
-        setLayout();
+        //setLayout();*/
     }
 
     @Override
@@ -77,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NfcHelper.getInstance().disable(this);
     }
 
-
+/*
     @Override
     public void onClick(View view) {
         Intent changeIntent = new Intent(this, ChangeActivity.class);
@@ -171,5 +180,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView pmAppNameTextView;
     private ImageView pmAppIconImageView;
 
-    ///////////////////////////////////////////////
+    */
 }

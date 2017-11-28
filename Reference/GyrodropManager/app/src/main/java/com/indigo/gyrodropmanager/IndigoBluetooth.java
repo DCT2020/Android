@@ -66,6 +66,8 @@ class IndigoBluetooth {
                     beacon.uuid = uuid;
                     beacon.rssi = rssi;
 
+                    result.getScanRecord().getBytes();
+
                     bluetoothEventListener.onBeaconFound(beacon);
                 }
             }
