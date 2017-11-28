@@ -6,9 +6,13 @@ package com.example.administrator.myapplication.Module.BlackBoxModule;
 
 public class Packet {
 
-    public String FullID;
-    public String BluetoothID;
-    public String BlackboxID;
+    public Packet(){
+        this.clear();
+    }
+
+    public String FullID = new String();
+    public String BluetoothID = new String();
+    public String BlackboxID = new String();
     public int Time;
     public int Sensor1_State;
     public int Sensor1_Count;
@@ -18,6 +22,21 @@ public class Packet {
     public int Sensor3_Count;
     public int Sensor4_State;
     public int Sensor4_Count;
+
+    public void clear(){
+        String FullID  = "";
+        String BluetoothID = "";
+        String BlackboxID = "";
+        int Time = 0;
+        Sensor1_State =  0;
+        Sensor1_Count =  0;
+        Sensor2_State =  0;
+        Sensor2_Count =  0;
+        Sensor3_State =  0;
+        Sensor3_Count =  0;
+        Sensor4_State =  0;
+        Sensor4_Count =  0;
+    }
 
     public static Packet packetParsing(String rawData) {
         String packetData = rawData.replace("", "");
