@@ -13,6 +13,8 @@ public class BlackBoxPacketManager {
     private ArrayList<blackBoxPacketContainer> blackboxPacketDataContainer = new ArrayList<blackBoxPacketContainer>();
 
     public class blackBoxPacketContainer{
+
+        private Packet theLatestPacket;
         private String key;
         private ArrayList<Packet> dataContainer = new ArrayList<Packet>();
 
@@ -24,12 +26,14 @@ public class BlackBoxPacketManager {
         {
             if(packet.BlackboxID.equals(key)){
 
+                theLatestPacket = packet;
                 dataContainer.add(packet);
                 return true;
             }
             return false;
         }
 
+        public Packet getLatestPacket(){ return theLatestPacket; }
         public String getKey(){
             return key;
         }
@@ -51,7 +55,7 @@ public class BlackBoxPacketManager {
 
     public boolean addPacketdata(String id, Packet packet){
 
-        blackBoxPacketContainer container = getContainer(id);
+        blackBoxPacketContainer container = getPacketContainer(id);
         if(container != null){
 
             container.addPacketData(packet);
@@ -61,13 +65,23 @@ public class BlackBoxPacketManager {
         return false;
     }
 
-    public blackBoxPacketContainer getContainer(String id){
+    public blackBoxPacketContainer getPacketContainer(String id){
 
         for(blackBoxPacketContainer container : blackboxPacketDataContainer){
 
             if(container.getKey().equals(id)){
                 return container;
             }
+        }
+
+        return null;
+    }
+
+    public blackBoxPacketContainer getPacketContainer(int i){
+
+        if(i < blackboxPacketDataContainer.size()) {
+
+            return blackboxPacketDataContainer.get(i);
         }
 
         return null;

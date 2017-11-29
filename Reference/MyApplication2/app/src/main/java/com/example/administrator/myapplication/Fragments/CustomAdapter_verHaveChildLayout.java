@@ -1,5 +1,6 @@
 package com.example.administrator.myapplication.Fragments;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -31,8 +32,8 @@ public class CustomAdapter_verHaveChildLayout extends CustomAdepter{
         return childAdapter.popItem(index);
     }
 
-    public CustomAdapter_verHaveChildLayout(int mainLayout, CustomAdepter _childAdapter){
-        super(mainLayout);
+    public CustomAdapter_verHaveChildLayout(Context context, int mainLayout, CustomAdepter _childAdapter){
+        super(context, mainLayout);
 
         childAdapter = _childAdapter;
     }

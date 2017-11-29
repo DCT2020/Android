@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/blackboxs_spinner"
+        android:layout_width="150dp"
+        android:layout_height="28dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="41dp" />
+
+    <Spinner
+        android:id="@+id/blackbox_packet_times_spinner"
+        android:layout_width="100dp"
+        android:layout_height="21dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="102dp" />
+
+    <TextView
+        android:id="@+id/blackbox_packet_time_name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <TextView
+        android:id="@+id/blackbox_packet_blackboxId_name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:text="BlackBox ID"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="144dp" />
+
+    <TextView
+        android:id="@+id/blackbox_Id_name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="블랙박스"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Spinner
+        android:id="@+id/blackbox_tag_spinner"
+        android:layout_width="179dp"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="41dp" />
+
+    <TextView
+        android:id="@+id/blackbox_tag_name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="태그"
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ListView
+        android:id="@+id/sensor_info_list"
+        android:layout_width="368dp"
+        android:layout_height="309dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/blackbox_packet_data_blackboxId_view"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:text="@string/NoSignal"
+        app:layout_constraintBottom_toBottomOf="@+id/blackbox_packet_blackboxId_name_view"
+        tools:layout_editor_absoluteX="90dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="센서 신호"
+        tools:layout_editor_absoluteX="313dp"
+        tools:layout_editor_absoluteY="157dp" />
+
+</android.support.constraint.ConstraintLayout>

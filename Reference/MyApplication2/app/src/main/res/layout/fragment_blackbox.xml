@@ -10,62 +10,90 @@
     <Spinner
         android:id="@+id/blackboxs_spinner"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="40dp" />
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/colorBlack"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blackbox_Id_name_view"
+        tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/blackbox_packet_times_spinner"
         android:layout_width="100dp"
         android:layout_height="21dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="113dp" />
+        android:layout_marginTop="12dp"
+        android:background="@color/colorBlack"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="@+id/blackbox_packet_time_name_view"
+        app:layout_constraintTop_toBottomOf="@+id/blackbox_packet_time_name_view"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/blackbox_packet_time_name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Time"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="82dp" />
+        app:layout_constraintStart_toStartOf="@+id/blackboxs_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/blackboxs_spinner"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/blackbox_packet_blackboxId_name_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:text="BlackBox ID"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="149dp" />
+        app:layout_constraintBottom_toTopOf="@+id/sensor_info_list"
+        app:layout_constraintStart_toStartOf="@+id/blackbox_packet_times_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/blackbox_packet_times_spinner"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/blackbox_Id_name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="블랙박스"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintEnd_toStartOf="@+id/blackbox_tag_name_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/blackbox_tag_spinner"
         android:layout_width="179dp"
-        android:layout_height="24dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="40dp" />
+        android:layout_height="27dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorBlack"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/blackboxs_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/blackboxs_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/blackbox_tag_name_view"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/blackbox_tag_name_view"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginEnd="176dp"
         android:text="태그"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/blackbox_Id_name_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/blackbox_tag_spinner"
+        tools:ignore="MissingConstraints" />
 
     <ListView
         android:id="@+id/sensor_info_list"
@@ -74,6 +102,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@color/colorBlack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,9 +112,25 @@
         android:id="@+id/blackbox_packet_data_blackboxId_view"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
         android:text="@string/NoSignal"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="149dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/blackbox_packet_blackboxId_name_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/blackbox_packet_blackboxId_name_view"
+        app:layout_constraintTop_toTopOf="@+id/blackbox_packet_blackboxId_name_view"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="20dp"
+        android:text="센서 신호"
+        app:layout_constraintBottom_toTopOf="@+id/sensor_info_list"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

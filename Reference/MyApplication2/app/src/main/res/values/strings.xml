@@ -13,13 +13,21 @@
     <string name="NoSignal">No Signal</string>
     <string name="NoSensor">No Sensor</string>
 
-    <string-array name="SensorList">
-        Sensor1 State,
-        Sensor1 Count,
-        Sensor2 State,
-        Sensor2 Count,
-        Sensor3 State,
-        Sensor3 Count
+    <string-array name="SensorCounts">
+        <item>Sensor1 Count</item>
+        <item>Sensor2 Count</item>
+        <item>Sensor3 Count</item>
+        <item>Sensor4 Count</item>
+    </string-array>
+    <string-array name="SensorStates">
+        <item>Sensor1 State</item>
+        <item>Sensor2 State</item>
+        <item>Sensor3 State</item>
+        <item>Sensor4 State</item>
+    </string-array>
+    <string-array name="BlackboxTags">
+        <item>Gyrodrop</item>
+        <item>French</item>
     </string-array>
     _
 </resources>
