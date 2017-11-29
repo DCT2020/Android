@@ -7,8 +7,14 @@ import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.myapplication.Algorithm.Algorithm;
@@ -22,92 +28,95 @@ import java.util.ArrayList;
 public class BlackBoxFragment extends IndigoFragment implements View.OnClickListener{
 
     private View view = null;
-    private IndigoBle indigoBle = new IndigoBle();
     private String additionalDirectory = new String();
     private String filterBlackboxID  = new String();
     private int lastRssi;
+    private int Rssi;
     Packet data = new Packet();
     Packet lastData = new Packet();
+
+    private BlackBoxPacketManager blackBoxDataManager = new BlackBoxPacketManager();
 
     @Override
     protected void onCreateView(View rootView) {
         super.onCreateView(rootView);
 
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(activity.getApplicationContext());
+        Spinner blackboxSpinner = (Spinner)(view.findViewById(R.id.blackboxs_spinner));
+        Spinner packetTimeSpinner = (Spinner)(view.findViewById(R.id.blackbox_packet_times_spinner));
+        Spinner blackboxTag = (Spinner)(view.findViewById(R.id.blackbox_tag_spinner));
 
-        View v = getLayoutInflater().inflate(R.layout.dialog_select, null);
-        Button gyroButton = (Button)v.findViewById(R.id.btn_gyro);
-        Button frenchButton = (Button)v.findViewById(R.id.btn_french);
 
-        gyroButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                additionalDirectory = getResources().getString(R.string.Gyrodrop);
-            }
-        });
 
-        frenchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                additionalDirectory = getResources().getString(R.string.French);
-            }
-        });
+        CustomAdapter_verHaveChildLayout adapter_child_childLayout = new CustomAdapter_verHaveChildLayout(R.layout.sensor_layout,)
 
-        mBuilder.setView(v);
-        AlertDialog dialog = mBuilder.create();
-        dialog.show();
+        TextView blackboxBlackboxId_TexView = (TextView)(view.findViewById(R.id.blackbox_packet_blackboxId_name_view));
 
-        indigoBle.init(activity);
-        indigoBle.setScanActionCallBack(new IndigoBle.Scan() {
+        IndigoBle.getInstance().init(activity);
+        IndigoBle.getInstance().setScanActionCallBack(new IndigoBle.Scan() {
             @Override
             public void scanActionCallBack(String address, String deviceName, int rssi, String scanRecord) {
-                lastData = data;
-                lastRssi = rssi;
+
+                Rssi = rssi;
 
                 data.clear();
-                data = Packet.packetParsing(scanRecord);
+                data = data.packetParsing(scanRecord);
 
-                if(filterBlackboxID != data.BlackboxID){
-                    Algorithm.DoOnce.Do("Set Default BlackboxID",()->{
+                if(data.BlackboxID == "") return;
 
-                        filterBlackboxID = data.BlackboxID;
-                    });
+
+                blackBoxDataManager.addBlackBox(data.BlackboxID);
+                if(blackBoxDataManager.addPacketdata(data.BlackboxID,data)){
+                    Toast.makeText(activity.getApplicationContext(),"패킷을 수신하지 못하였습니다(ID에 해당하는 블랙박스를 찾을 수 없습니다).",Toast.LENGTH_SHORT).show();
                 }
-                if(data.BlackboxID != lastData.BlackboxID){
-                    Algorithm.DoOnce.Do("Data Verification", ()->{
 
-                        if(lastRssi >= rssi)
-                            filterBlackboxID = lastData.BlackboxID;
-                        else
-                            filterBlackboxID = data.BlackboxID;
-                    });
+                if(!filterBlackboxID.equals("")) {
+                    if (!filterBlackboxID.equals(data.BlackboxID)) {
+                        Algorithm.DoOnce.Do("Set Default BlackboxID", new Algorithm.Runnable() {
+                            @Override
+                            public void function() {
+
+                                filterBlackboxID = data.BlackboxID;
+                            }
+                        });
+                        if (!data.BlackboxID.equals(lastData.BlackboxID)) {
+                            Algorithm.DoOnce.Do("Data Verification", new Algorithm.Runnable() {
+                                @Override
+                                public void function() {
+
+                                    if (lastRssi >= Rssi)
+                                        filterBlackboxID = lastData.BlackboxID;
+                                    else
+                                        filterBlackboxID = data.BlackboxID;
+                                }
+                            });
+                        }
+                    }
+                    if(!filterBlackboxID.equals(data.BlackboxID)) return;
                 }
-                if(filterBlackboxID != data.BlackboxID) return;
 
-                String temp = new String();
-                temp = data.BlackboxID + " : " + data.BluetoothID + " : " + data.FullID + " : " +  data.Sensor1_Count + " : " + data.Sensor1_State + " : " + data.Sensor2_Count + " : " + data.Sensor2_State + " : " + data.Sensor3_Count + " : " + data.Sensor3_State + " : " + data.Sensor4_Count + " : " + data.Sensor4_State;
-                Toast.makeText(activity.getApplicationContext(),temp,Toast.LENGTH_SHORT).show();
+                lastData = data;
+                lastRssi = rssi;
             }
         });
-        indigoBle.startScan();
+        IndigoBle.getInstance().startScan();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        indigoBle.startScan();
+        IndigoBle.getInstance().startScan();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        indigoBle.stopScan();
+        IndigoBle.getInstance().stopScan();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        indigoBle.stopScan();
+        IndigoBle.getInstance().stopScan();
     }
 
     @Override

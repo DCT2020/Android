@@ -10,5 +10,16 @@
     <string name="Gyrodrop">Blackbox/Gyrodrop</string>
     <string name="French">Blackbox/French</string>
     <string name="select">Select</string>
+    <string name="NoSignal">No Signal</string>
+    <string name="NoSensor">No Sensor</string>
+
+    <string-array name="SensorList">
+        Sensor1 State,
+        Sensor1 Count,
+        Sensor2 State,
+        Sensor2 Count,
+        Sensor3 State,
+        Sensor3 Count
+    </string-array>
     _
 </resources>
